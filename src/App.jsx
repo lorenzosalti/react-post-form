@@ -1,8 +1,14 @@
-
+// hooks
 import { useState } from "react"
+
+
 
 function App() {
 
+  // variabili di stato
+  const [postData, setPostData] = useState(blankPost)
+
+  // valori iniziali form vuoto
   const blankPost = {
     author: "",
     title: "",
@@ -10,26 +16,30 @@ function App() {
     public: false
   }
 
-  const [postData, setPostData] = useState(blankPost)
 
+  // modifica valori degli input
   function handlePostData(event) {
 
+    // controllo valore checkbox o text input
     const eventValue = event.target.type === "checkbox" ? event.target.checked : event.target.value
 
+    // modifica della variabile di stato
     setPostData(prev => ({
       ...prev,
       [event.target.name]: eventValue
     }))
   }
 
+
+  // gestione invio del form
   function handleSubmit(event) {
     event.preventDefault()
 
     console.log('form inviato')
     console.log(postData)
 
+    // azzeramento dopo l'invio dei valori inseriti
     setPostData(blankPost)
-
   }
 
 
