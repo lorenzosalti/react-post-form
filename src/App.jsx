@@ -3,20 +3,33 @@ import { useState } from "react"
 
 function App() {
 
-  const [postData, setPostData] = useState({
+  const blankPost = {
     author: "",
     title: "",
     body: "",
     public: false
-  })
+  }
+
+  const [postData, setPostData] = useState(blankPost)
 
   function handlePostData(event) {
+
     const eventValue = event.target.type === "checkbox" ? event.target.checked : event.target.value
 
     setPostData(prev => ({
       ...prev,
       [event.target.name]: eventValue
     }))
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+
+    console.log('form inviato')
+    console.log(postData)
+
+    setPostData(blankPost)
+
   }
 
 
@@ -26,7 +39,7 @@ function App() {
 
       <hr />
 
-      <form>
+      <form onSubmit={handleSubmit}>
 
         {/* Autore del post */}
         <input
@@ -56,13 +69,15 @@ function App() {
         />
 
         {/* Pubblicazione del post */}
+        <label htmlFor="public">Pubblicazione del post</label>
         <input
           type="checkbox"
           name="public"
-          value={postData.public}
+          checked={postData.public}
           onChange={handlePostData}
-          placeholder="Pubblicazione del post"
         />
+
+        <button type="submit">Invia Post</button>
 
       </form>
 
