@@ -1,12 +1,12 @@
 // hooks
 import { useState } from "react"
 
+// axios
+import axios from "axios"
+
 
 
 function App() {
-
-  // variabili di stato
-  const [postData, setPostData] = useState(blankPost)
 
   // valori iniziali form vuoto
   const blankPost = {
@@ -15,6 +15,9 @@ function App() {
     body: "",
     public: false
   }
+
+  // variabili di stato
+  const [postData, setPostData] = useState(blankPost)
 
 
   // modifica valori degli input
@@ -37,6 +40,9 @@ function App() {
 
     console.log('form inviato')
     console.log(postData)
+
+    // axios.post()
+
 
     // azzeramento dopo l'invio dei valori inseriti
     setPostData(blankPost)
