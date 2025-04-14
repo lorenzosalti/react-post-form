@@ -39,9 +39,16 @@ function App() {
     event.preventDefault()
 
     console.log('form inviato')
-    console.log(postData)
+    // console.log(postData)
 
-    // axios.post()
+    // chiamata POST con axios
+    axios.post('https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts', postData)
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
 
 
     // azzeramento dopo l'invio dei valori inseriti
@@ -58,31 +65,40 @@ function App() {
       <form onSubmit={handleSubmit}>
 
         {/* Autore del post */}
+        <label htmlFor="author">Autore del post</label> <br />
         <input
           type="text"
           name="author"
           value={postData.author}
           onChange={handlePostData}
-          placeholder="Autore del post"
+          placeholder="Inserisci autore"
         />
 
+        <hr />
+
         {/* Titolo del post */}
+        <label htmlFor="title">Titolo del post</label> <br />
         <input
           type="text"
           name="title"
           value={postData.title}
           onChange={handlePostData}
-          placeholder="Titolo del post"
+          placeholder="Inserisci titolo"
         />
 
+        <hr />
+
         {/* Corpo del post */}
+        <label htmlFor="body">Corpo del post</label> <br />
         <input
           type="text"
           name="body"
           value={postData.body}
           onChange={handlePostData}
-          placeholder="Corpo del post"
+          placeholder="Inserisci corpo"
         />
+
+        <hr />
 
         {/* Pubblicazione del post */}
         <label htmlFor="public">Pubblicazione del post</label>
@@ -92,6 +108,8 @@ function App() {
           checked={postData.public}
           onChange={handlePostData}
         />
+
+        <hr />
 
         <button type="submit">Invia Post</button>
 
