@@ -45,9 +45,17 @@ function App() {
     axios.post('https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts', postData)
       .then(response => {
         console.log(response.data)
+        console.log(response.status)
+
+        alert(response.statusText)
       })
       .catch(error => {
-        console.log(error)
+        console.log(error.response)
+
+        alert(
+          `Error: ${error.response.status}
+          ${error.response.statusText}`
+        )
       })
 
 
